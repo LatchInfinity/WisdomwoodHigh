@@ -6,11 +6,11 @@ const Hero: React.FC = () => {
     <section className="hero-banner">
       <div className="hero-overlay">
         <div className="hero-container">
-          <div className="hero-text-content">
+          <div className="hero-text-content fade-in-up">
             <h1 className="hero-text-main">
-              Transforming<br />
-              Learners into<br />
-              Leaders
+              <span className="text-light">Transforming</span><br />
+              <span className="text-bold">Learners</span> <span className="text-accent">into</span><br />
+              <span className="text-bold">Leaders</span>
             </h1>
           </div>
           <div className="hero-curve">
