@@ -5,7 +5,7 @@ Wisdomwood High — Apply Now form.
 ## Live Site
 
 Deployed via GitHub Pages:  
-**https://latchinfinity.github.io/WisdomwoodHigh/**
+**https://applynow.wisdomwoodhigh.in/**
 
 ## Tech Stack
 
