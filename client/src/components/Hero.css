@@ -1,0 +1,71 @@
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background-image: linear-gradient(rgba(0, 89, 179, 0.4), rgba(0, 89, 179, 0.4)), url('../assets/Pc.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    position: relative;
+}
+
+.hero-text-main {
+    color: white;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 500;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-curve {
+    position: absolute;
+    bottom: -450px;
+    /* Adjusting for parent height */
+    left: 0;
+    width: 100%;
+    height: 150px;
+    pointer-events: none;
+}
+
+/* Decoration curve line */
+.hero-banner::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    width: 400px;
+    height: 400px;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 300px;
+        background-image: linear-gradient(rgba(0, 89, 179, 0.4), rgba(0, 89, 179, 0.4)), url('../assets/Mobile.jpg');
+    }
+
+    .hero-text-main {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .hero-curve {
+        height: 30px;
+    }
+}
