@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ApplyForm.css';
 
 interface FormErrors {
@@ -22,8 +23,8 @@ const ApplyForm: React.FC = () => {
     });
 
     const [errors, setErrors] = useState<FormErrors>({});
-    const [submitted, setSubmitted] = useState(false);
     const [animating, setAnimating] = useState(false);
+    const navigate = useNavigate();
 
     const resetForm = () => {
         setFormData({
@@ -130,12 +131,12 @@ const ApplyForm: React.FC = () => {
                 body: JSON.stringify(submissionData),
             });
 
-            // Fade out form, then show thank you
+            // Fade out form, then redirect to thank you page
             setAnimating(true);
             setTimeout(() => {
-                setSubmitted(true);
                 resetForm();
                 setAnimating(false);
+                navigate('/thank-you');
             }, 500);
 
         } catch (error) {
@@ -144,13 +145,6 @@ const ApplyForm: React.FC = () => {
         }
     };
 
-    const handleApplyAgain = () => {
-        setAnimating(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setAnimating(false);
-        }, 500);
-    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -177,12 +171,10 @@ const ApplyForm: React.FC = () => {
     return (
         <div className="enquiry-card">
             <div className="enquiry-header">
-                {submitted ? 'THANK YOU' : 'ENQUIRY FORM'}
+                ENQUIRY FORM
             </div>
 
-            {/* FORM VIEW */}
-            {!submitted && (
-                <form className={`enquiry-form ${animating ? 'fade-out' : 'fade-in'}`} onSubmit={handleSubmit} noValidate>
+            <form className={`enquiry-form ${animating ? 'fade-out' : 'fade-in'}`} onSubmit={handleSubmit} noValidate>
                     <div className={`form-group ${errors.admissionFor ? 'has-error' : ''}`}>
                         <label>Admission for <span className="required">*</span></label>
                         <select name="admissionFor" value={formData.admissionFor} onChange={handleChange} required>
@@ -314,23 +306,6 @@ const ApplyForm: React.FC = () => {
                         </p>
                     </div>
                 </form>
-            )}
-
-            {/* THANK YOU VIEW */}
-            {submitted && (
-                <div className={`thank-you-view ${animating ? 'fade-out' : 'fade-in'}`}>
-                    <div className="thank-you-icon">✓</div>
-                    <h2 className="thank-you-title">Thank You!</h2>
-                    <p className="thank-you-message">
-                        Your enquiry has been submitted successfully.<br />
-                        Our admissions team will contact you within 24-48 hours.
-                    </p>
-                    <div className="thank-you-buttons">
-                        <a href="#" className="btn-secondary">Back to Home</a>
-                        <button type="button" className="btn-primary-action" onClick={handleApplyAgain}>Apply Again</button>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
