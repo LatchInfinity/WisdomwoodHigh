@@ -139,8 +139,7 @@ const ApplyForm: React.FC = () => {
                 navigate('/thank-you');
             }, 500);
 
-        } catch (error) {
-            console.error('Submission error:', error);
+        } catch {
             alert('There was an error submitting your form. Please try again later.');
         }
     };
