@@ -4,12 +4,11 @@ import './ThankYou.css';
 
 declare global {
     interface Window {
-        fbq: any;
-        _fbq: any;
-        dataLayer: any[];
+        fbq: (...args: unknown[]) => void;
+        _fbq: (...args: unknown[]) => void;
+        dataLayer: Record<string, unknown>[];
     }
 }
-
 const ThankYou: React.FC = () => {
     const navigate = useNavigate();
 
@@ -20,53 +19,23 @@ const ThankYou: React.FC = () => {
         };
     }, []);
 
-    // Meta Pixel & GTM — only on ThankYou page
+    // Track conversion event on this page
     useEffect(() => {
-        const injectedElements: HTMLElement[] = [];
+        // Fire Meta Pixel Lead event (conversion tracking)
+        if (window.fbq) {
+            window.fbq('track', 'Lead', {
+                content_name: 'Admission Form Submission',
+                content_category: 'Form Submission',
+            });
+        }
 
-        // --- Meta Pixel Code ---
-        const fbScript = document.createElement('script');
-        fbScript.innerHTML = `
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1577997463166710');
-            fbq('track', 'PageView');
-        `;
-        document.head.appendChild(fbScript);
-        injectedElements.push(fbScript);
-
-        const fbNoscript = document.createElement('noscript');
-        fbNoscript.innerHTML = `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1577997463166710&ev=PageView&noscript=1" />`;
-        document.body.appendChild(fbNoscript);
-        injectedElements.push(fbNoscript);
-
-        // --- Google Tag Manager ---
-        const gtmScript = document.createElement('script');
-        gtmScript.innerHTML = `
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-KMB24JQB');
-        `;
-        document.head.appendChild(gtmScript);
-        injectedElements.push(gtmScript);
-
-        const gtmNoscript = document.createElement('noscript');
-        gtmNoscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMB24JQB" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
-        document.body.insertBefore(gtmNoscript, document.body.firstChild);
-        injectedElements.push(gtmNoscript);
-
-        // Cleanup on unmount
-        return () => {
-            injectedElements.forEach((el) => el.remove());
-        };
+        // Fire GTM conversion event
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'form_submission',
+                form_name: 'admission_enquiry',
+            });
+        }
     }, []);
 
     return (
@@ -95,7 +64,7 @@ const ThankYou: React.FC = () => {
                 <div className="thank-you-buttons">
                     <button
                         className="btn-secondary"
-                        onClick={() => navigate('https://wisdomwoodhigh.in')}
+                        onClick={() => window.location.href = 'https://wisdomwoodhigh.in'}
                     >
                         Back to Home
                     </button>
