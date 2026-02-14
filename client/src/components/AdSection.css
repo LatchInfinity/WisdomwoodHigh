@@ -92,9 +92,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
+    text-wrap: nowrap;
 }
 
-.highlight-list, .guideline-list {
+.highlight-list,
+.guideline-list {
     list-style: none;
     padding: 0;
     display: flex;
@@ -102,7 +104,8 @@
     gap: 12px;
 }
 
-.highlight-list li, .guideline-list li {
+.highlight-list li,
+.guideline-list li {
     font-size: 0.95rem;
     color: #2d3748;
     display: flex;

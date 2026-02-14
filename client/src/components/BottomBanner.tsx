@@ -8,10 +8,10 @@ const BottomBanner: React.FC = () => {
         <div className="bottom-banner-container">
           <div className="bottom-banner-content">
             <h2 className="bottom-banner-title">
-              Excellence in <br />
-              Every Endeavor
+              Future-Ready<br />
+              Learning  Spaces
             </h2>
-            <p className="bottom-banner-subtitle">Join the WisdomWood Family Today</p>
+            <p className="bottom-banner-subtitle">A campus designed to inspire</p>
           </div>
         </div>
       </div>
