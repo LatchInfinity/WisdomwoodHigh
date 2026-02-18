@@ -78,7 +78,7 @@ const ApplyForm: React.FC = () => {
         if (!validateForm()) return;
 
         // Google Apps Script Web App URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrW-3Op0BVWqEyDqSjpX532wpzqBFLHxKt4Bv3ji1kNckaKBU64hl822X5wJ4aGHe-xg/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRixIRhn26lTu90t-_R1HRvFTuph4vsCfPYkzVX2UTfrerrAT3r9CHZy-7XmJVXj29Tw/exec";
 
         const now = new Date();
         const submissionData = {
