@@ -29,9 +29,9 @@ const AdSection: React.FC = () => {
                         <div className="info-block">
                             <h3>Instructions for Parents</h3>
                             <ul className="guideline-list">
-                                <li>Please enter your child’s full name, date of birth, and grade seeking admission accurately.</li>
-                                <li>Provide a valid mobile number and email ID for all admission communication.</li>
-                                <li>Mention if your child has a sibling at WisdomWood High.</li>
+                                <li>Please select the grade for which admission is sought.</li>
+                                <li>Enter the student’s full name in BLOCK LETTERS as per official records.</li>
+                                <li>Provide the contact person’s name and active mobile number for all admission-related communication.</li>
                                 <li>Use the remarks section to add any specific queries.</li>
                                 <li>After submission, our admissions team will contact you within 24-48 hours.</li>
                             </ul>
