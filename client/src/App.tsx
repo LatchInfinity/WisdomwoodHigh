@@ -22,12 +22,12 @@ function Home() {
   return (
     <>
       <Hero />
-      <AdSection />
       <div className="container center-content">
         <div className="content-right full-width-form">
           <ApplyForm />
         </div>
       </div>
+      <AdSection />
       <BottomBanner />
     </>
   )
